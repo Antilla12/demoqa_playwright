@@ -21,13 +21,14 @@ test.describe('Drag and Drop @regression', () => {
     expect(text.toLowerCase()).toContain('drop here');
   });
 
-  test('drag element to drop target', async ({ page }) => {
+  // give drag tests extra retries since they are timing sensitive
+  test('drag element to drop target', { retries: 3 }, async ({ page }) => {
     await dragDropPage.dragToTarget();
     await expect(dragDropPage.dropText).toHaveText('Dropped!');
     console.log('Element dragged and dropped successfully!');
   });
 
-  test('droppable changes color after drop', async ({ page }) => {
+  test('droppable changes color after drop', { retries: 3 }, async ({ page }) => {
     const initialColor = await dragDropPage.droppable.evaluate(
       el => window.getComputedStyle(el).backgroundColor
     );

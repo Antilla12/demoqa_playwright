@@ -11,6 +11,7 @@ export class DragDropPage {
     await this.page.goto('https://demoqa.com/droppable', {
       waitUntil: 'domcontentloaded',
     });
+    await this.page.waitForTimeout(1000);
   }
 
   async dragToTarget() {
@@ -25,11 +26,17 @@ export class DragDropPage {
     const endX = targetBounds.x + targetBounds.width / 2;
     const endY = targetBounds.y + targetBounds.height / 2;
 
+    // move to source first and hover
     await this.page.mouse.move(startX, startY);
+    await this.page.waitForTimeout(500);
     await this.page.mouse.down();
-    await this.page.waitForTimeout(300);
-    await this.page.mouse.move(endX, endY, { steps: 20 });
-    await this.page.waitForTimeout(300);
+    await this.page.waitForTimeout(500);
+
+    // move slowly in small increments
+    await this.page.mouse.move(startX, startY, { steps: 5 });
+    await this.page.mouse.move(endX, endY, { steps: 30 });
+    await this.page.waitForTimeout(500);
     await this.page.mouse.up();
+    await this.page.waitForTimeout(500);
   }
 }
