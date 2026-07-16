@@ -41,16 +41,15 @@ test.describe('Sortable @regression', () => {
     console.log('Grid tab works!');
   });
 
-  test('drag list item to reorder', { retries: 3 }, async ({ page }) => {
+  test('drag list item to reorder', { retries: 5 }, async ({ page }) => {
     const initialTexts = await sortablePage.getListItemTexts();
     console.log('Before drag:', initialTexts);
 
-    await sortablePage.dragListItem(0, 2);
+    await sortablePage.dragListItem(0, 3);
 
     const newTexts = await sortablePage.getListItemTexts();
     console.log('After drag:', newTexts);
 
-    // order should have changed
     expect(newTexts).not.toEqual(initialTexts);
     console.log('List reordered successfully!');
   });

@@ -11,7 +11,7 @@ export class SortablePage {
     await this.page.goto('https://demoqa.com/sortable', {
       waitUntil: 'domcontentloaded',
     });
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
   }
 
   async getListItemTexts() {
@@ -36,15 +36,15 @@ export class SortablePage {
     const endX = targetBounds.x + targetBounds.width / 2;
     const endY = targetBounds.y + targetBounds.height / 2;
 
-    // slow deliberate drag
     await this.page.mouse.move(startX, startY);
-    await this.page.waitForTimeout(500);
+    await this.page.waitForTimeout(1000);
     await this.page.mouse.down();
-    await this.page.waitForTimeout(800);
+    await this.page.waitForTimeout(1000);
     await this.page.mouse.move(startX, startY - 5, { steps: 5 });
-    await this.page.mouse.move(endX, endY, { steps: 30 });
     await this.page.waitForTimeout(500);
+    await this.page.mouse.move(endX, endY, { steps: 40 });
+    await this.page.waitForTimeout(1000);
     await this.page.mouse.up();
-    await this.page.waitForTimeout(800);
+    await this.page.waitForTimeout(1000);
   }
 }
