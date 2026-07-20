@@ -37,6 +37,8 @@ UI automation testing suite for [DemoQA](https://demoqa.com) using **Playwright 
 - Drag and Drop
 
 ## Project structure
+
+```
 ├── pages/                    # Page Object Model classes (one per DemoQA section)
 │   ├── AlertsPage.js
 │   ├── ButtonsPage.js
@@ -62,6 +64,7 @@ UI automation testing suite for [DemoQA](https://demoqa.com) using **Playwright 
 ├── tests/                     # One spec file per DemoQA section, mirroring pages/
 ├── playwright.config.js
 └── package.json
+```
 
 ## Tech stack
 
